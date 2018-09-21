@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "form";
+}
+@model Prova1.Models.User
+
+<h2>Controlla città</h2>
+
+<p>Inserisci il nome:   [Successo: "Pippo" e "Samuele", Fallimento negli altri casi]</p>
+<input type="text" id="text1">
+<input type="button" value="clicca" onclick="doSomething2()">
+<p id="txtHint"></p>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script>
+
+    function doSomething(x) {
+        $.ajax({
+            type: "POST",
+            url: "AddUser",
+            // il nome della variabile deve essere lo stesso del nome del parametro dentro la funzione da richiamare
+            data: { input: x }
+        })
+            .done(function (result) {
+                //alert(result);
+                $("#txtHint").html(result);
+                $("#text1").val("");
+            });
+    }
+
+    function doSomething2() {
+        var values = document.getElementById('text1').value;
+        doSomething(values);
+    }
+
+
+</script>
